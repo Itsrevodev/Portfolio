@@ -311,108 +311,10 @@ button {
   right: 2%;
 }
 
-.voxel-cube {
-  position: absolute;
-  width: 230px;
-  height: 270px;
-  top: 22%;
-  left: 26%;
-  animation: float 5s ease-in-out infinite;
-}
-
-.cube-top, .cube-left, .cube-right {
-  position: absolute;
-  overflow: hidden;
-}
-
-.cube-top {
-  width: 176px;
-  height: 102px;
-  top: 0;
-  left: 27px;
-  background: #dcff7c;
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-}
-
-.cube-left {
-  width: 88px;
-  height: 152px;
-  top: 87px;
-  left: 27px;
-  background: #8bbd20;
-  clip-path: polygon(0 0, 100% 33px, 100% 100%, 0 calc(100% - 33px));
-}
-
-.cube-right {
-  width: 88px;
-  height: 152px;
-  top: 87px;
-  left: 115px;
-  background: #b7eb38;
-  clip-path: polygon(0 33px, 100% 0, 100% calc(100% - 33px), 0 100%);
-}
-
-.cube-top i, .cube-left i, .cube-right i {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: rgba(17,17,15,.16);
-}
-
-.cube-top i:nth-child(1) { top: 25px; left: 53px; }
-.cube-top i:nth-child(2) { top: 48px; left: 92px; width: 18px; height: 18px; }
-.cube-top i:nth-child(3) { top: 44px; left: 20px; width: 22px; height: 22px; }
-.cube-top i:nth-child(4) { top: 21px; right: 22px; width: 15px; height: 15px; }
-.cube-left i:nth-child(1) { top: 44px; left: 15px; }
-.cube-left i:nth-child(2) { top: 87px; right: 8px; width: 18px; height: 18px; }
-.cube-right i:nth-child(1) { top: 50px; right: 17px; }
-.cube-right i:nth-child(2) { bottom: 17px; left: 14px; width: 20px; height: 20px; }
-
-.cube-code {
-  position: absolute;
-  z-index: 2;
-  top: 127px;
-  left: 73px;
-  color: var(--ink);
-  font: 700 27px/1 "DM Mono", monospace;
-  transform: skewY(21deg);
-}
-
-.cube-shadow {
-  position: absolute;
-  width: 220px;
-  height: 55px;
-  top: 71%;
-  left: 27%;
-  border-radius: 50%;
-  background: #000;
-  filter: blur(14px);
-  opacity: .5;
-  animation: shadow 5s ease-in-out infinite;
-}
-
-.orbit {
-  position: absolute;
-  inset: 7%;
-  border: 1px solid rgba(199,255,61,.22);
-  border-radius: 50%;
-}
-
-.orbit--one { animation: orbit 18s linear infinite; }
-.orbit--two {
-  inset: 20%;
-  border-style: dashed;
-  animation: orbit 12s linear infinite reverse;
-}
-
-.orbit::before {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  top: 11%;
-  left: 17%;
-  background: var(--orange);
-  content: "";
+.hero-illustration {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .floating-tag {
@@ -429,13 +331,11 @@ button {
   top: 17%;
   right: 8%;
   transform: rotate(7deg);
-  animation: tag-drift 4s ease-in-out infinite;
 }
 .tag-paper {
   bottom: 12%;
   left: 7%;
   transform: rotate(-6deg);
-  animation: tag-drift 4s ease-in-out -2s infinite;
 }
 .spark { position: absolute; color: var(--lime); font-size: 28px; }
 .spark--one { top: 13%; left: 21%; }
@@ -866,26 +766,11 @@ footer > p { color: #686962; }
 .socials a:hover { color: var(--lime); }
 .copyright { display: none; }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-}
-
-@keyframes shadow {
-  0%, 100% { transform: scale(1); opacity: .48; }
-  50% { transform: scale(.8); opacity: .28; }
-}
-
-@keyframes orbit { to { transform: rotate(360deg); } }
 @keyframes blink { 50% { opacity: 0; } }
 @keyframes pulse {
   50% { box-shadow: 0 0 0 8px rgba(199, 255, 61, 0); }
 }
 @keyframes nudge { 50% { transform: translateY(5px); } }
-@keyframes tag-drift {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -7px; }
-}
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes progress-in {
   from { transform: scaleX(0); }
@@ -1035,22 +920,34 @@ footer > p { color: #686962; }
     </div>
 
     <div class="hero-art" aria-hidden="true">
-      <div class="orbit orbit--one"></div>
-      <div class="orbit orbit--two"></div>
-      <div class="cube-shadow"></div>
+      <svg class="hero-illustration" viewBox="0 0 500 500" role="presentation" focusable="false">
+        <ellipse cx="250" cy="388" rx="151" ry="27" fill="#000" opacity=".42"/>
+        <ellipse cx="250" cy="250" rx="218" ry="178" fill="none" stroke="#c7ff3d" stroke-opacity=".22"/>
+        <ellipse cx="250" cy="250" rx="163" ry="133" fill="none" stroke="#c7ff3d" stroke-opacity=".2" stroke-dasharray="5 9"/>
 
-      <div class="voxel-cube">
-        <div class="cube-top">
-          <i></i><i></i><i></i><i></i>
-        </div>
-        <div class="cube-left">
-          <i></i><i></i><i></i>
-        </div>
-        <div class="cube-right">
-          <i></i><i></i><i></i>
-        </div>
-        <div class="cube-code">&lt;/&gt;</div>
-      </div>
+        <path d="M250 89 371 159v178l-121 70-121-70V159z" fill="#c7ff3d" stroke="#e3ff91" stroke-width="3"/>
+        <path d="m129 159 121 70v178l-121-70z" fill="#719b20"/>
+        <path d="m250 229 121-70v178l-121 70z" fill="#a8d936"/>
+        <path d="m250 132 82 47v138l-82 47-82-47V179z" fill="#11110f" stroke="#10110e" stroke-width="5"/>
+        <path d="m250 150 66 38v120l-66 38-66-38V188z" fill="#182316" stroke="#c7ff3d" stroke-opacity=".7" stroke-width="2"/>
+        <path d="m250 150 66 38-66 39-66-39z" fill="#c7ff3d" opacity=".13"/>
+        <path d="m184 188 66 39v119l-66-38z" fill="#ff693b" opacity=".12"/>
+        <path d="m316 188-66 39v119l66-38z" fill="#c7ff3d" opacity=".16"/>
+
+        <path d="m250 89 30 17-30 17-30-17z" fill="#efffb0"/>
+        <path d="m129 159 30 17v35l-30-17z" fill="#c7ff3d"/>
+        <path d="m371 159-30 17v35l30-17z" fill="#dcff7c"/>
+        <path d="m129 337 30 17v-35l-30-17z" fill="#8bbd20"/>
+        <path d="m371 337-30 17v-35l30-17z" fill="#c7ff3d"/>
+
+        <path d="m89 234 22-13v26l-22 13z" fill="#ff693b"/>
+        <path d="m390 219 18 10v20l-18-10z" fill="#c7ff3d"/>
+        <path d="m111 299 14-8v16l-14 8z" fill="#c7ff3d"/>
+        <path d="m371 105 20-12v24l-20 12z" fill="#ff693b"/>
+        <path d="m251 55 8 8-8 8-8-8z" fill="#c7ff3d"/>
+        <path d="m415 313 7 7-7 7-7-7z" fill="#ff693b"/>
+        <path d="m76 157 6 6-6 6-6-6z" fill="#c7ff3d"/>
+      </svg>
 
       <div class="floating-tag tag-java">JAVA</div>
       <div class="floating-tag tag-paper">PAPER API</div>
