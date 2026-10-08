@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All projects by ITS_REVO, Minecraft plugin and server developer">
+  <title>All Work — ITS_REVO</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+    :root {
+      --ink: #11110f;
+      --paper: #f1f0e8;
+      --lime: #c7ff3d;
+      --orange: #ff693b;
+      --blue: #7ba8ff;
+      --line: rgba(17, 17, 15, .18);
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      display: flex;
+      min-height: 82px;
+      padding: 16px clamp(24px, 6vw, 92px);
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      background: var(--ink);
+    }
+
+    .logo {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+    }
+
+    .pixel-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+    }
+
+    .pixel-mark span {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      background: var(--lime);
+    }
+
+    .pixel-mark span:nth-child(1) { top: 0; left: 0; }
+    .pixel-mark span:nth-child(2) { top: 0; left: 11px; }
+    .pixel-mark span:nth-child(3) { top: 11px; left: 0; }
+    .pixel-mark span:nth-child(4) { top: 11px; left: 22px; }
+    .pixel-mark span:nth-child(5) { top: 22px; left: 11px; }
+
+    .back-link {
+      font: 500 11px/1 "DM Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .back-link:hover { color: var(--lime); }
+
+    main { padding: 90px clamp(24px, 6vw, 92px) 120px; }
+    .eyebrow, .project-top, .photo-slot strong, .photo-slot span, .tags span, .slot-label {
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      color: #73736c;
+      font-size: 10px;
+      letter-spacing: .13em;
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      font-size: clamp(58px, 10vw, 132px);
+      line-height: .82;
+      letter-spacing: -.085em;
+    }
+
+    .intro {
+      max-width: 570px;
+      margin: 28px 0 58px;
+      color: #686861;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      padding: 19px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.28);
+    }
+
+    .project-top {
+      display: flex;
+      margin-bottom: 15px;
+      justify-content: space-between;
+      color: #6f6e67;
+      font-size: 9px;
+      letter-spacing: .08em;
+    }
+
+    .project-visual {
+      position: relative;
+      display: grid;
+      height: 260px;
+      padding: 18px;
+      place-items: center;
+      overflow: hidden;
+      background: #d9d8d0;
+    }
+
+    .project-card--lime .project-visual { background: var(--lime); }
+    .project-card--orange .project-visual { background: var(--orange); }
+    .project-card--blue .project-visual { background: var(--blue); }
+
+    .photo-slot {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      width: 100%;
+      height: 100%;
+      padding: 18px;
+      place-items: center;
+      border: 1px dashed rgba(17,17,15,.68);
+      text-align: center;
+    }
+
+    .project-photo {
+      position: absolute;
+      z-index: 3;
+      inset: 18px;
+      display: block;
+      width: calc(100% - 36px);
+      height: calc(100% - 36px);
+      object-fit: cover;
+    }
+
+    .project-photo[hidden], .photo-slot[hidden] { display: none; }
+
+    .photo-slot div { display: grid; gap: 10px; }
+    .photo-slot strong { font-size: 10px; letter-spacing: .08em; }
+    .photo-slot span { font-size: 9px; line-height: 1.5; overflow-wrap: anywhere; }
+
+    h2 {
+      margin: 22px 0 9px;
+      font-size: 27px;
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .description {
+      min-height: 62px;
+      margin: 0 0 18px;
+      color: #62625d;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tags span {
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      font-size: 9px;
+    }
+
+    .project-card--empty {
+      display: flex;
+      min-height: 430px;
+      flex-direction: column;
+      justify-content: center;
+      border-style: dashed;
+      background: transparent;
+    }
+
+    .project-card--empty .photo-slot {
+      min-height: 230px;
+      border-color: rgba(17,17,15,.3);
+    }
+
+    .project-card--empty h2 { font-size: 21px; }
+    .slot-label {
+      margin: 0;
+      color: #777770;
+      font-size: 9px;
+      letter-spacing: .1em;
+    }
+
+    footer {
+      display: flex;
+      min-height: 120px;
+      padding: 28px clamp(24px, 6vw, 92px);
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      background: var(--ink);
+      font: 400 10px/1 "DM Mono", monospace;
+      letter-spacing: .08em;
+    }
+
+    footer p { color: #777770; }
+    footer a:hover { color: var(--lime); }
+    .socials {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-size: 9px;
+    }
+    .socials a { display: inline-flex; gap: 7px; align-items: center; }
+    .socials svg { width: 17px; height: 17px; fill: currentColor; }
+    .footer-contact {
+      padding: 12px 15px;
+      border: 1px solid #686962;
+      font-size: 9px;
+      letter-spacing: .08em;
+    }
+    .footer-contact:hover { border-color: var(--lime); }
+
+    @media (max-width: 900px) {
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      main { padding-top: 64px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-visual { height: 245px; }
+      .project-card--empty { min-height: 360px; }
+      footer { align-items: flex-start; flex-direction: column; gap: 18px; }
+      footer p { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="index.html" aria-label="ITS_REVO home">
+      <span class="pixel-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </span>
+      <span>ITS_REVO</span>
+    </a>
+    <a class="back-link" href="index.html#work">← Back to portfolio</a>
+  </header>
+
+  <main>
+    <span class="eyebrow">PROJECT ARCHIVE / UPDATED AS I BUILD</span>
+    <h1>ALL MY<br>WORK.</h1>
+    <p class="intro">A collection of Minecraft projects, plugins, and server systems. Each project has a photo space ready for screenshots or artwork.</p>
+
+    <section class="project-grid" aria-label="All projects">
+      <article class="project-card project-card--lime">
+        <div class="project-top"><span>01</span><span>Survival network</span></div>
+        <div class="project-visual">
+          <img class="project-photo" src="images/works/revival-smp.jpg" alt="Revival SMP project" loading="lazy">
+          <div class="photo-slot" hidden><div><strong>Add Revival SMP photo</strong><span>images/works/revival-smp.jpg</span></div></div>
+        </div>
+        <h2>REVIVAL SMP</h2>
+        <p class="description">A custom survival experience with quests, economies, crates, and player-first progression.</p>
+        <div class="tags"><span>Paper</span><span>Java</span><span>Redis</span></div>
+      </article>
+
+      <article class="project-card project-card--orange">
+        <div class="project-top"><span>02</span><span>PvP plugin</span></div>
+        <div class="project-visual">
+          <img class="project-photo" src="images/works/void-duels.gif" alt="Void Duels — work in progress" loading="lazy">
+          <div class="photo-slot" hidden><div><strong>Void Duels work in progress</strong><span>images/works/void-duels.gif</span></div></div>
+        </div>
+        <h2>VOID DUELS</h2>
+        <p class="description">Fast, competitive duels with ranked queues, custom kits, arenas, and zero-lag matchmaking.</p>
+        <div class="tags"><span>Spigot</span><span>MySQL</span><span>Kotlin</span></div>
+      </article>
+
+      <article class="project-card project-card--blue">
+        <div class="project-top"><span>03</span><span>Server system</span></div>
+        <div class="project-visual">
+          <img class="project-photo" src="images/works/core-engine.gif" alt="Core Engine — work in progress" loading="lazy">
+          <div class="photo-slot" hidden><div><strong>Core Engine work in progress</strong><span>images/works/core-engine.gif</span></div></div>
+        </div>
+        <h2>CORE ENGINE</h2>
+        <p class="description">A modular server core handling profiles, punishments, ranks, chat, and cross-server sync.</p>
+        <div class="tags"><span>Velocity</span><span>Mongo</span><span>Gradle</span></div>
+      </article>
+
+      <article class="project-card project-card--empty">
+        <div class="project-top"><span>04</span><span>UPCOMING</span></div>
+        <div class="project-visual">
+          <img class="project-photo" src="images/works/upcoming-01.gif" alt="Upcoming project preview" loading="lazy">
+          <div class="photo-slot" hidden><div><strong>Upcoming preview</strong><span>images/works/upcoming-01.gif</span></div></div>
+        </div>
+        <h2>UPCOMING PROJECT</h2>
+        <p class="description">Details coming soon.</p>
+      </article>
+
+      <article class="project-card project-card--empty">
+        <div class="project-top"><span>05</span><span>UPCOMING</span></div>
+        <div class="project-visual">
+          <img class="project-photo" src="images/works/upcoming-02.gif" alt="Upcoming project preview" loading="lazy">
+          <div class="photo-slot" hidden><div><strong>Upcoming preview</strong><span>images/works/upcoming-02.gif</span></div></div>
+        </div>
+        <h2>UPCOMING PROJECT</h2>
+        <p class="description">Details coming soon.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <a href="index.html">ITS_REVO ↗</a>
+    <p>BUILT WITH CODE, CAFFEINE &amp; BLOCKS.</p>
+    <div class="socials">
+      <a href="https://github.com/Itsrevodev" target="_blank" rel="noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.28-1.24-1.62-1.24-1.62-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 .1.76 2.22 3.27 1.58.1-.73.4-1.22.7-1.5-2.48-.28-5.1-1.24-5.1-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.1-1.44 3.04-1.15 3.04-1.15.61 1.54.23 2.68.12 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.23-5.12 5.51.4.35.75 1.03.75 2.08v3.09c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+        GITHUB
+      </a>
+      <a href="contact.html" aria-label="Discord contact details">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7 5.1a18 18 0 0 0-4.4-1.4l-.55 1.12a16.7 16.7 0 0 0-5.5 0L8.7 3.7a18 18 0 0 0-4.4 1.4C1.5 9.2.75 13.2 1.12 17.1a18 18 0 0 0 5.4 2.74l1.16-1.9a11.7 11.7 0 0 1-1.82-.88l.45-.35a12.9 12.9 0 0 0 11.38 0l.46.35a11.7 11.7 0 0 1-1.83.88l1.16 1.9a18 18 0 0 0 5.4-2.74c.44-4.52-.75-8.48-3.22-12ZM8.8 14.8c-1.07 0-1.95-.98-1.95-2.2s.86-2.2 1.95-2.2 1.97.99 1.95 2.2c0 1.22-.86 2.2-1.95 2.2Zm6.4 0c-1.07 0-1.95-.98-1.95-2.2s.86-2.2 1.95-2.2 1.97.99 1.95 2.2c0 1.22-.86 2.2-1.95 2.2Z"/></svg>
+        DISCORD
+      </a>
+      <a class="footer-contact" href="contact.html">LET'S TALK ↗</a>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll(".project-photo").forEach(image => {
+      image.addEventListener("error", () => {
+        image.hidden = true;
+        image.nextElementSibling.hidden = false;
+      });
+    });
+  </script>
+</body>
+</html>

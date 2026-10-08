@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact ITS_REVO by email, Discord, or GitHub">
+  <title>Contact — ITS_REVO</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+    :root {
+      --ink: #11110f;
+      --paper: #11110f;
+      --lime: #c7ff3d;
+      --muted: #a4a49b;
+      --line: rgba(255, 255, 255, .14);
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: var(--paper); }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      display: flex;
+      min-height: 82px;
+      padding: 16px clamp(24px, 6vw, 92px);
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      background: var(--ink);
+    }
+
+    .logo {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+    }
+
+    .pixel-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+    }
+
+    .pixel-mark span {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      background: var(--lime);
+    }
+
+    .pixel-mark span:nth-child(1) { top: 0; left: 0; }
+    .pixel-mark span:nth-child(2) { top: 0; left: 11px; }
+    .pixel-mark span:nth-child(3) { top: 11px; left: 0; }
+    .pixel-mark span:nth-child(4) { top: 11px; left: 22px; }
+    .pixel-mark span:nth-child(5) { top: 22px; left: 11px; }
+
+    .back-link {
+      display: inline-flex;
+      min-height: 42px;
+      padding: 0 15px;
+      align-items: center;
+      border: 1px solid var(--lime);
+      color: var(--lime);
+      background: rgba(199, 255, 61, .08);
+      font: 500 11px/1 "DM Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .back-link:hover {
+      color: var(--ink);
+      background: var(--lime);
+      transform: translateX(-3px);
+    }
+
+    main {
+      position: relative;
+      padding: 100px clamp(24px, 8vw, 120px) 130px;
+      color: white;
+      background:
+        radial-gradient(ellipse at 88% 12%, rgba(199, 255, 61, .1), transparent 34%),
+        var(--paper);
+      overflow: hidden;
+    }
+
+    .eyebrow, .contact-label, .contact-meta, footer {
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .13em;
+    }
+
+    .availability {
+      display: inline-flex;
+      margin-bottom: 30px;
+      padding: 10px 12px;
+      gap: 9px;
+      align-items: center;
+      border: 1px solid rgba(199, 255, 61, .35);
+      color: var(--lime);
+      font: 500 10px/1 "DM Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 12px rgba(199, 255, 61, .65);
+    }
+
+    h1 {
+      margin: 24px 0 22px;
+      font-size: clamp(52px, 8.5vw, 112px);
+      line-height: .9;
+      letter-spacing: -.075em;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--lime);
+    }
+
+    .intro {
+      max-width: 560px;
+      margin: 30px 0 62px;
+      color: #c5c5bd;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      --card-accent: var(--lime);
+      display: flex;
+      min-height: 245px;
+      padding: 25px;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .015));
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .contact-card:nth-child(2) { --card-accent: #a5b4fc; }
+    .contact-card:nth-child(3) { --card-accent: #c7ff3d; }
+
+    .contact-card:hover {
+      border-color: var(--card-accent);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025));
+      transform: translateY(-5px);
+    }
+
+    .contact-card:focus-visible, .back-link:focus-visible, .logo:focus-visible, footer a:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 5px;
+    }
+
+    .contact-label, .contact-meta {
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .contact-label { color: var(--card-accent); }
+
+    .contact-card strong {
+      font-size: clamp(16px, 1.7vw, 22px);
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+    }
+
+    .contact-meta span:last-child {
+      color: var(--card-accent);
+      font-size: 16px;
+    }
+
+    footer {
+      display: flex;
+      min-height: 120px;
+      padding: 28px clamp(24px, 6vw, 92px);
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      background: var(--ink);
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+
+    footer p { color: #777770; }
+    footer a:hover { color: var(--lime); }
+
+    @media (max-width: 800px) {
+      main { padding-top: 76px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-card { min-height: 190px; }
+    }
+
+    @media (max-width: 520px) {
+      footer { align-items: flex-start; flex-direction: column; gap: 16px; }
+      footer p { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="index.html" aria-label="ITS_REVO home">
+      <span class="pixel-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </span>
+      <span>ITS_REVO</span>
+    </a>
+    <a class="back-link" href="index.html">← Back to portfolio</a>
+  </header>
+
+  <main>
+    <div class="availability"><span class="availability-dot"></span>Available for new projects</div>
+    <span class="eyebrow">CONTACT / LET'S MAKE IT HAPPEN</span>
+    <h1>LET'S BUILD<span>SOMETHING GOOD.</span></h1>
+    <p class="intro">Have an idea for a server or plugin? Tell me what you're building, and let's make it real. Choose the best way to reach me below.</p>
+
+    <section class="contact-grid" aria-label="Contact options">
+      <a class="contact-card" href="mailto:itsrevoyt@gmail.com">
+        <span class="contact-label">01 / EMAIL</span>
+        <strong>itsrevoyt@gmail.com</strong>
+        <span class="contact-meta"><span>Send me an email</span><span>↗</span></span>
+      </a>
+
+      <a class="contact-card" href="https://discord.com/" target="_blank" rel="noreferrer">
+        <span class="contact-label">02 / DISCORD</span>
+        <strong>its_revo_yt</strong>
+        <span class="contact-meta"><span>Find me on Discord</span><span>↗</span></span>
+      </a>
+
+      <a class="contact-card" href="https://github.com/Itsrevodev" target="_blank" rel="noreferrer">
+        <span class="contact-label">03 / GITHUB</span>
+        <strong>github.com/Itsrevodev</strong>
+        <span class="contact-meta"><span>See what I'm building</span><span>↗</span></span>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="index.html">ITS_REVO ↗</a>
+    <p>BUILT WITH CODE, CAFFEINE &amp; BLOCKS.</p>
+    <span>© ITS_REVO</span>
+  </footer>
+</body>
+</html>
